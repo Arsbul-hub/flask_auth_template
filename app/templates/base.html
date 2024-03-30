@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% block head %}{% endblock %}
+    <link rel="icon" type="image/png" href="/static/images/favicon.ico"/>
+    <meta name="yandex-verification" content="18e05c877b8ae73b"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--Стили-->
+    <link rel="stylesheet" type="text/css" href="/static/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/page.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/dialog.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/animations.css">
+
+    <!--Скрипты-->
+    <script type="text/javascript" src="/static/js/dialog.js"></script>
+    <script type="text/javascript" src="/static/js/base.js"></script>
+    <script src="/static/js/jquery.js"></script>
+    <script src="https://kit.fontawesome.com/6957c188ce.js" crossorigin="anonymous"></script>
+    <script src="/static/js/site.js"></script>
+    <script src="/static/js/navigation.js"></script>
+    <script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
+
+</head>
+<body>
+
+<div id="before">
+    {% block before %}{% endblock %}
+</div>
+<div class="base-content">
+
+
+    <div class="nav-menu" id="desktop">
+<!--        <div class="logo">-->
+<!--            <a href="/">-->
+<!--                <img src="/static/images/logo.png">-->
+<!--            </a>-->
+<!--        </div>-->
+        {% if not user.is_authenticated %}
+        <a class="navigation-buttons" href="{{ url_for('login_blueprint.register') }}">Регистрация</a>
+        <a class="navigation-buttons" href="{{ url_for('login_blueprint.login') }}">Вход</a>
+        {% endif %}
+    </div>
+
+    <div class="nav-menu" id="mobile" style="display: none">
+        <div class="nav-controls">
+<!--            <div class="logo">-->
+<!--                <a href="/">-->
+<!--                    <img src="/static/images/logo.png">-->
+<!--                </a>-->
+<!--            </div>-->
+
+            <a onclick="open_top_menu()" id="open-navigation"><i class="fa-solid fa-bars "></i></a>
+            <a style="display: none" id="close-navigation" onclick="close_top_menu()"><i class="fa fa-close"></i></a>
+        </div>
+        <div id="navigation">
+            {% if not user.is_authenticated %}
+            <a class="navigation-button" href="{{ url_for('login_blueprint.register') }}">Регистрация</a>
+            <a class="navigation-buttons" href="{{ url_for('login_blueprint.login') }}">Вход</a>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <div id="after">
+        {% block after %}{% endblock %}
+    </div>
+
+
+</div>
+
+
+</body>
+</html><!-- cached 2022-11-24 10:12:41 e24cc38881bdebf1e12f84cc0a6bf3ce -->
